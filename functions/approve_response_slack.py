@@ -45,5 +45,5 @@ def send_slack_message(action_details):
 	return  {
 		"isBase64Encoded": "false",
 		"statusCode": 200,
-		"body": f'{\"text\": \"The {codepipeline_name} approval has been {codepipeline_status}.\"}'
+		"body": f'{"text": "The {codepipeline_name} approval has been {codepipeline_status}."}'
 	}
