@@ -37,19 +37,18 @@ def cloudwatch_notification(message, region):
   }
 
 def format_message(message_details):
-  pipeline = message_details["pipeline"]
-  stage = message_details["stage"]
-  state = message_details["state"]
+  pipeline = message_details['pipeline']
+  stage = message_details['stage']
+  state = message_details['state']
 
-  return f'{pipeline} - {stage} - {state}'
+  return f'{pipeline} - {stage}: {state}'
 
 
 def default_notification(subject, message):
-  json_message = json.dumps(message)
-  detail_type = json_message["detail-type"]
+  detail_type = message['detail-type']
   return {
     "fallback": "A new message",
-    "fields": [{"title": subject if subject else detail_type, "value": format_message(json_message["detail"]) if type(message) is dict else message, "short": False}]
+    "fields": [{"title": subject if subject else detail_type, "value": format_message(message['detail']) if type(message) is dict else message, "short": False}]
   }
 
 
