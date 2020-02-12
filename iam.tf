@@ -11,6 +11,15 @@ locals {
       element(concat(aws_cloudwatch_log_group.approve_request_lambda[*].arn, list("")), 0),
       element(concat(aws_cloudwatch_log_group.approve_response_lambda[*].arn, list("")), 0)
     ]
+    },
+    {
+      sid    = "AllowAccessToCodebuildApproval"
+      effect = "Allow"
+      actions = [
+        "codepipeline:*",
+        "codebuild:*"
+      ]
+      resources = ["*"]
   }]
 
   lambda_policy_document_kms = var.kms_key_arn != "" ? [{
