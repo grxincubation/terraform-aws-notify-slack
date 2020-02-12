@@ -42,8 +42,9 @@ def send_slack_message(action_details):
 	print(response_approval)
         # This will replace the interactive message with a simple text response.
         # You can implement a more complex message update if you would like.
+        new_text = f'The {codepipeline_name} approval has been {codepipeline_status}.'
 	return  {
 		"isBase64Encoded": "false",
 		"statusCode": 200,
-		"body": f'{"text": "The {codepipeline_name} approval has been {codepipeline_status}."}'
+		"body": '{"text": "' + new_text + '"}'
 	}
