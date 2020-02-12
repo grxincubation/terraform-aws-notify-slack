@@ -31,10 +31,15 @@ def lambda_handler(event, context):
     slack_message = {
         "channel": SLACK_CHANNEL,
         "username": codepipeline_name,
-        "text": data["approval"]["customData"] + " " + data["approval"]["approvalReviewLink"],
+        "text": data["approval"]["customData"],
         "attachments": [
             {
-                "text": "Yes to approve the build to continue.",
+                "text": "Source: " + codepipeline_name
+                "color": "#3AA3E3",
+                "attachment_type": "default"
+            },
+            {
+                "text": data["approval"]["approvalReviewLink"],
                 "fallback": "You are unable to approve a build.",
                 "callback_id": "wopr_game",
                 "color": "#3AA3E3",
@@ -42,7 +47,7 @@ def lambda_handler(event, context):
                 "actions": [
                     {
                         "name": "deployment",
-                        "text": "Yes",
+                        "text": ":ship: Yes",
                         "style": "danger",
                         "type": "button",
                         "value": json.dumps({"approve": True, "codePipelineToken": token, "codePipelineName": codepipeline_name, "codePipelineStage": codepipeline_stage, "codePipelineAction": codepipeline_action}),
@@ -55,7 +60,7 @@ def lambda_handler(event, context):
                     },
                     {
                         "name": "deployment",
-                        "text": "No",
+                        "text": ":poop: No",
                         "type": "button",
                         "value": json.dumps({"approve": False, "codePipelineToken": token, "codePipelineName": codepipeline_name, "codePipelineStage": codepipeline_stage, "codePipelineAction": codepipeline_action})
                     }  

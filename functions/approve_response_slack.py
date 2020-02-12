@@ -16,15 +16,7 @@ def lambda_handler(event, context):
 
 	# Validate Slack token
 	if SLACK_VERIFICATION_TOKEN == payload['token']:
-		send_slack_message(json.loads(payload['actions'][0]['value']))
-		
-		# This will replace the interactive message with a simple text response.
-		# You can implement a more complex message update if you would like.
-		return  {
-			"isBase64Encoded": "false",
-			"statusCode": 200,
-			"body": "{\"text\": \"The approval has been processed\"}"
-		}
+		return send_slack_message(json.loads(payload['actions'][0]['value']))
 	else:
 		return  {
 			"isBase64Encoded": "false",
@@ -48,3 +40,10 @@ def send_slack_message(action_details):
 							result={'summary':'','status':codepipeline_status},
 							token=token)
 	print(response_approval)
+        # This will replace the interactive message with a simple text response.
+        # You can implement a more complex message update if you would like.
+	return  {
+		"isBase64Encoded": "false",
+		"statusCode": 200,
+		"body": f'{\"text\": \"The {codepipeline_name} approval has been {codepipeline_status}.\"}'
+	}
