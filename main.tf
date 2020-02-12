@@ -194,8 +194,8 @@ resource "aws_lambda_function" "notify_slack" {
 
   filename = data.archive_file.notify_slack[0].output_path
 
-  function_name = var.approve_response_lambda_function_name
-  description   = var.approve_response_lambda_description
+  function_name = var.notify_lambda_function_name
+  description   = var.notify_lambda_description
 
   role                           = aws_iam_role.lambda[0].arn
   handler                        = "notify_slack.lambda_handler"

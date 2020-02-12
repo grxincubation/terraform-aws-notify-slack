@@ -6,3 +6,4 @@ functions/*.zip
 functions/pytest.ini
 .idea
 *.iml
+*.swp
