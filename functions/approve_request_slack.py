@@ -57,7 +57,7 @@ def lambda_handler(event, context):
                         "name": "deployment",
                         "text": "No",
                         "type": "button",
-                        "value": json.dumps({"approve": False, "codePipelineToken": token, "codePipelineName": codepipeline_name})
+                        "value": json.dumps({"approve": False, "codePipelineToken": token, "codePipelineName": codepipeline_name, "codePipelineStage": codepipeline_stage, "codePipelineAction": codepipeline_action})
                     }  
                 ]
             }
