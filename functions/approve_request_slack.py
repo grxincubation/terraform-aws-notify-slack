@@ -34,7 +34,7 @@ def lambda_handler(event, context):
         "text": data["approval"]["customData"],
         "attachments": [
             {
-                "text": "Source: " + codepipeline_name
+                "text": "Source: " + codepipeline_name,
                 "color": "#3AA3E3",
                 "attachment_type": "default"
             },
