@@ -50,7 +50,7 @@ def lambda_handler(event, context):
                         "text": ":ship: Yes",
                         "style": "danger",
                         "type": "button",
-                        "value": json.dumps({"approve": True, "codePipelineToken": token, "codePipelineName": codepipeline_name, "codePipelineStage": codepipeline_stage, "codePipelineAction": codepipeline_action}),
+                        "value": json.dumps({"approve": True, "codePipelineToken": token, "codePipelineName": codepipeline_name, "codePipelineStage": codepipeline_stage, "codePipelineAction": codepipeline_action, "customData": data["approval"]["customData"]}),
                         "confirm": {
                             "title": "Are you sure?",
                             "text": "This will approve the build to continue.",
